@@ -15,11 +15,12 @@ eventListeners()
 
 function eventListeners() {
     // disabling create account button for # and /
-    document.addEventListener("DOMContentLoaded", enterPress)
+    document.addEventListener("keypress", enterPress)
     // validating form function to run this
     createAccount.addEventListener("click", send)
     // disabling create account button for # and /
     signWithGoogle.addEventListener("click", signUpGoogle)
+
     // key down to validation
     full_name.addEventListener("keypress", validation)
     // key down to validation
@@ -34,17 +35,17 @@ function eventListeners() {
     re_password.addEventListener("keypress", validation)
 
     // key down to validation
-    full_name.addEventListener("blur", valid1)
+    full_name.addEventListener("blur", validation)
     // key down to validation
-    user_name.addEventListener("blur", valid1)
+    user_name.addEventListener("blur", validation)
     // key down to validation
-    email.addEventListener("blur", valid1)
+    email.addEventListener("blur", validation)
     // key down to validation
-    phone_number.addEventListener("blur", valid1)
+    phone_number.addEventListener("blur", validation)
     // key down to validation
-    password.addEventListener("blur", valid1)
+    password.addEventListener("blur", validation)
     // key down to validation
-    re_password.addEventListener("blur", valid1)
+    re_password.addEventListener("blur", validation)
 }
 
 // Function
@@ -56,50 +57,64 @@ function enterPress(e) {
     };
 }
 
-// not allowed to be empty
-function valid1(e) {
-    if (e.target.value <= 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        e.target.previousElementSibling.style.opacity = "1"
-    } else {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        e.target.previousElementSibling.style.opacity = "0"
-    }
-}
-
 // validating input for better sign up
-function validation() {
-    console.log("working");
+function validation(e) {
     // if user value was empty make aa error
-    validateLength(this)
-}
-
-function validateLength(field) {
-    field.spellcheck = false
-    console.log("validate length is working");
-    if (field.value.length >= 0) {
-        field.classList.remove("error");
-        field.style.borderColor = "green"
-    } else {
-        field.classList.add("error");
-        field.style.borderColor = "red"
+    valid1(this)
+    // for full name input
+    if (this.id == 'full-name') {
+        notNumber(this)
+    }
+    if (this.id == "phone-number") {
+        numberValid(e)
     }
 }
 
+// not allowed to be empty
+function valid1(field) {
+    field.spellcheck = false
+    if (field.value <= 1) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        field.previousElementSibling.style.opacity = "1"
+        field.style.borderColor = "red"
+    } else {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        field.previousElementSibling.style.opacity = "0"
+        field.style.borderColor = "green"
+    }
+}
 
+// it should not contain any number
+function notNumber(field) {
+    // value validation of full name
+    // if (!/[^a-zA-Z]/.test(field.value)) {
+    if (/\d/.test(field.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        field.previousElementSibling.style.opacity = "1"
+        field.style.borderColor = "red"
+        console.log("number");
+    } else {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        field.previousElementSibling.style.opacity = "0"
+        field.style.borderColor = "green"
+    }
+}
 
-
-
-
-
-
-
-
+function numberValid(evt) {
+    if (evt.which < 48 || evt.which > 57   )
+    {
+        evt.preventDefault();
+    }
+}
 
 function signUpGoogle(e) {
     e.preventDefault()
 }
 
-function send() {}
+function send() {
+    console.log("it is sending data from json");
+}

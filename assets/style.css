@@ -113,7 +113,7 @@
 }
 
 .section-two .part .form .in input {
-    border: 0.705598px solid #c5c5c5;
+    border: 1.4px solid #c5c5c5;
     box-sizing: border-box;
     border-radius: 3px;
     width: 250px;
@@ -157,7 +157,7 @@
     margin: 4px;
     font-size: 13px;
     color: rgb(46, 46, 46);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .section-two .part .three .one p:nth-child(1) {
@@ -173,7 +173,7 @@
     margin: 4px;
     font-size: 13px;
     color: rgb(46, 46, 46);
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .section-two>.part>.one {

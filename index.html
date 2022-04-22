@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-
     <div class="container">
         <div class="cover">
             <div class="section-one">
@@ -27,35 +27,35 @@
                 <div class="part">
                     <h1>Create Account</h1>
                     <h3>For Business or Celebrity</h3>
-                    <div class="form">
+                    <form class="form">
                         <div class="in">
-                            <p>Full Name</p>
-                            <input type="texFirst namet">
+                            <p>Please enter your full name</p>
+                            <input type="text" id="full-name" placeholder="Full Name"    >
                         </div>
                         <div class="in">
-                            <p>User Name</p>
-                            <input type="text">
+                            <p>please enter a unique username</p>
+                            <input type="text" id="user-name" placeholder="User Name">
                         </div>
                         <div class="in">
-                            <p>Email</p>
-                            <input type="text">
+                            <p> Please enter you number to verify</p>
+                            <input type="text" id="phone-number" placeholder="Phone Number">
                         </div>
                         <div class="in">
-                            <p>Phone Number</p>
-                            <input type="text">
+                            <p> Please enter a valid Email</p>
+                            <input type="text" id="email" placeholder="Email">
                         </div>
                         <div class="in">
-                            <p>Password</p>
-                            <input type="text">
+                            <p> Please enter your password</p>
+                            <input type="text" id="password" placeholder="Password">
                         </div>
                         <div class="in">
-                            <p>Repeat Password</p>
-                            <input type="text">
+                            <p> Please confirm you password</p>
+                            <input type="text" id="re-password" placeholder="Re-Password">
                         </div>
-                    </div>
+                    </form>
                     <div class="three">
                         <div class="one">
-                            <input type="checkbox">
+                            <input type="checkbox" id="remmber-me">
                             <p>Remember me</p>
                         </div>
                         <div class="one">
@@ -63,11 +63,11 @@
                         </div>
                     </div>
                     <div class="one">
-                        <input type="checkbox">
+                        <input type="checkbox" id="terms-privacy">
                         <p>I agree to all the Terms and Privacy policy </p>
                     </div>
                     <div class="link">
-                        <a href="#" id="CA">Create Account</a>
+                        <input type="submit" id="CA" value="Create Account" name="action">
                         <a href="#" id="SI"> <img src="images/iconfinder_Google_1298745 1.png" alt=""> Sign in with
                             Google </a>
                     </div>

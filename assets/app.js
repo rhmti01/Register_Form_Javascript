@@ -9,6 +9,12 @@ const terms_privacy = document.getElementById("terms-privacy")
 const createAccount = document.getElementById("CA")
 const signWithGoogle = document.getElementById("SI")
 const para = document.querySelectorAll(".in p")
+const para1 = para[0]
+const para2 = para[1]
+const para3 = para[2]
+const para4 = para[3]
+const para5 = para[4]
+const para6 = para[5]
 
 // eventListeners=>
 eventListeners()
@@ -22,30 +28,30 @@ function eventListeners() {
     signWithGoogle.addEventListener("click", signUpGoogle)
 
     // key down to validation
-    full_name.addEventListener("keypress", validation)
+    full_name.addEventListener("keyup", validation)
     // key down to validation
-    user_name.addEventListener("keypress", validation)
+    user_name.addEventListener("keyup", validation)
     // key down to validation
-    email.addEventListener("keypress", validation)
+    email.addEventListener("keyup", validation)
     // key down to validation
-    phone_number.addEventListener("keypress", validation)
+    phone_number.addEventListener("keyup", validation)
     // key down to validation
-    password.addEventListener("keypress", validation)
+    password.addEventListener("keyup", validation)
     // key down to validation
-    re_password.addEventListener("keypress", validation)
+    re_password.addEventListener("keyup", validation)
 
     // key down to validation
-    full_name.addEventListener("blur", validation)
+    full_name.addEventListener("focus", validation)
     // key down to validation
-    user_name.addEventListener("blur", validation)
+    user_name.addEventListener("focus", validation)
     // key down to validation
-    email.addEventListener("blur", validation)
+    email.addEventListener("focus", validation)
     // key down to validation
-    phone_number.addEventListener("blur", validation)
+    phone_number.addEventListener("focus", validation)
     // key down to validation
-    password.addEventListener("blur", validation)
+    password.addEventListener("focus", validation)
     // key down to validation
-    re_password.addEventListener("blur", validation)
+    re_password.addEventListener("focus", validation)
 }
 
 // Function
@@ -59,22 +65,43 @@ function enterPress(e) {
 
 // validating input for better sign up
 function validation(e) {
-    // if user value was empty make aa error
-    valid1(this)
+
     // for full name input
     if (this.id == 'full-name') {
-        // notNumber(this)
+        // full validation for full name
+        npluslvalid(e)
+        // disable symbols
         notSymbol(e)
+    }
+    if (this.id == "user-name") {
+        // disable symbols 
+        notSymbol(e)
+        // if user value was empty make a error
+        valid1(this)
     }
     if (this.id == "phone-number") {
         numberValid(e)
+        // if user value was empty make a error
+        valid1(this)
+    }
+    if (this.id == "email") {
+        // if user value was empty make a error
+        valid1(this)
+    }
+    if (this.id == "password") {
+        // if user value was empty make a error
+        valid1(this)
+    }
+    if (this.id == "re-password") {
+        // if user value was empty make a error
+        valid1(this)
     }
 }
 
 // not allowed to be empty
 function valid1(field) {
     field.spellcheck = false
-    if (field.value.length <= 1) {
+    if (field.value.length <= 0) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         field.previousElementSibling.style.opacity = "1"
@@ -86,40 +113,59 @@ function valid1(field) {
         field.style.borderColor = "green"
     }
 }
-
+// console.log(par1.innerHtml);
 // it should not contain any number
-function notNumber(field) {
+function npluslvalid(e) {
     // value validation of full name
-    // if (!/[^a-zA-Z]/.test(field.value)) {
-    if (/\d/.test(field.value) || field.value.length > 20) {
+
+    if (e.target.value.length > 20) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
-        field.previousElementSibling.style.opacity = "1"
-        field.style.borderColor = "red"
-        console.log("number");
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para1.innerHTML = "Only 20 letter is Allowed"
+    } else if (/\d/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para1.innerHTML = "Number is Not Allowed in FullName"
+    } else if (e.target.value == 0) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para1.innerHTML = "Please Enter your Full Name"
     } else {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
-        field.previousElementSibling.style.opacity = "0"
-        field.style.borderColor = "green"
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
+        console.log(e.target);
     }
 }
 
+// other characters without numbers is not allowed
 function numberValid(evt) {
+    // checking with asci code (:
     if (evt.which < 48 || evt.which > 57 || evt.target.value.length > 10) {
         evt.preventDefault();
+
         // console.log(evt.target);
     }
 }
 
+
 function notSymbol(e) {
     const char = String.fromCharCode(e.keyCode); // changes the keycode from a int to a string
     if ((/[a-zA-Z0-9\s\.$]/.test(char))) {
-    //   e.preventDefault(); // prevents the default (which is adding the character to the value)
-    console.log("okkkk");
-    }
-    else{
-        console.log("not  okkkkkkkk");
+        // console.log("not  ok ");
+    } else {
+        e.preventDefault(); // prevents the default (which is adding the character to the value)
+        // console.log("okkkk");
     }
 }
 

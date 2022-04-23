@@ -65,58 +65,34 @@ function enterPress(e) {
 
 // validating input for better sign up
 function validation(e) {
-
+    e.target.value.spellcheck = false
     // for full name input
     if (this.id == 'full-name') {
         // full validation for full name
-        npluslvalid(e)
-        // disable symbols
-        notSymbol(e)
+        fulllNameee(e)
     }
     if (this.id == "user-name") {
-        // disable symbols 
-        notSymbol(e)
-        // if user value was empty make a error
-        valid1(this)
+        userrrNameee(e)
     }
     if (this.id == "phone-number") {
-        numberValid(e)
-        // if user value was empty make a error
-        valid1(this)
+        phoneeeNumberrr(e)
     }
     if (this.id == "email") {
-        // if user value was empty make a error
-        valid1(this)
+        emailValid(e)
     }
     if (this.id == "password") {
-        // if user value was empty make a error
-        valid1(this)
+        passwordValid(e)
     }
     if (this.id == "re-password") {
-        // if user value was empty make a error
-        valid1(this)
+        repasswordValid(e)
     }
 }
 
-// not allowed to be empty
-function valid1(field) {
-    field.spellcheck = false
-    if (field.value.length <= 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        field.previousElementSibling.style.opacity = "1"
-        field.style.borderColor = "red"
-    } else {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        field.previousElementSibling.style.opacity = "0"
-        field.style.borderColor = "green"
-    }
-}
 // console.log(par1.innerHtml);
 // it should not contain any number
-function npluslvalid(e) {
+function fulllNameee(e) {
     // value validation of full name
+    e.target.value.spellcheck = false
 
     if (e.target.value.length > 20) {
         // console.log(e.target.previousElementSibling);
@@ -139,33 +115,45 @@ function npluslvalid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Please Enter your Full Name"
+    } else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para1.innerHTML = "Symbols is Not Allowed"
     } else {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
-        console.log(e.target);
     }
 }
 
 // other characters without numbers is not allowed
-function numberValid(evt) {
+function phoneeeNumberrr(e) {
     // checking with asci code (:
-    if (evt.which < 48 || evt.which > 57 || evt.target.value.length > 10) {
-        evt.preventDefault();
-
-        // console.log(evt.target);
-    }
-}
-
-
-function notSymbol(e) {
-    const char = String.fromCharCode(e.keyCode); // changes the keycode from a int to a string
-    if ((/[a-zA-Z0-9\s\.$]/.test(char))) {
-        // console.log("not  ok ");
+    if (e.target.value == 0) {
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para3.innerHTML = "Please Enter a valid Number"
+        // console.log(e.target.previousElementSibling);
+    } else if (e.which < 48 || e.which > 57) {
+        // console.log(e.target);
+        para3.innerHTML = "Invalid Number"
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        // costume text for error
+        console.log(para3);
+    } else if (e.target.value.length > 11) {
+        // console.log(e.target);
+        para3.innerHTML = "Invalid Number"
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        // costume text for error
+        console.log(para3);
     } else {
-        e.preventDefault(); // prevents the default (which is adding the character to the value)
-        // console.log("okkkk");
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
     }
 }
 
@@ -175,4 +163,20 @@ function signUpGoogle(e) {
 
 function send() {
     console.log("it is sending data from json");
+}
+
+function phoneeeNumberrr(e) {
+    console.log(e.target);
+}
+
+function emailValid(e) {
+    console.log(e.target);
+}
+
+function passwordValid(e) {
+    console.log(e.target);
+}
+
+function repasswordValid(e) {
+    console.log(e.target);
 }

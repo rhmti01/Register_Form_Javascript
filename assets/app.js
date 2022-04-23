@@ -63,7 +63,8 @@ function validation(e) {
     valid1(this)
     // for full name input
     if (this.id == 'full-name') {
-        notNumber(this)
+        // notNumber(this)
+        notSymbol(e)
     }
     if (this.id == "phone-number") {
         numberValid(e)
@@ -73,7 +74,7 @@ function validation(e) {
 // not allowed to be empty
 function valid1(field) {
     field.spellcheck = false
-    if (field.value <= 1) {
+    if (field.value.length <= 1) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         field.previousElementSibling.style.opacity = "1"
@@ -90,7 +91,7 @@ function valid1(field) {
 function notNumber(field) {
     // value validation of full name
     // if (!/[^a-zA-Z]/.test(field.value)) {
-    if (/\d/.test(field.value)) {
+    if (/\d/.test(field.value) || field.value.length > 20) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         field.previousElementSibling.style.opacity = "1"
@@ -105,9 +106,20 @@ function notNumber(field) {
 }
 
 function numberValid(evt) {
-    if (evt.which < 48 || evt.which > 57   )
-    {
+    if (evt.which < 48 || evt.which > 57 || evt.target.value.length > 10) {
         evt.preventDefault();
+        // console.log(evt.target);
+    }
+}
+
+function notSymbol(e) {
+    const char = String.fromCharCode(e.keyCode); // changes the keycode from a int to a string
+    if ((/[a-zA-Z0-9\s\.$]/.test(char))) {
+    //   e.preventDefault(); // prevents the default (which is adding the character to the value)
+    console.log("okkkk");
+    }
+    else{
+        console.log("not  okkkkkkkk");
     }
 }
 

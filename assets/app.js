@@ -127,50 +127,117 @@ function fulllNameee(e) {
     }
 }
 
+// checking user name input for validation 
+function userrrNameee(e) {
+    // checking with target type
+    // console.log(e.target);
+    if (e.target.value.length > 15) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para2.innerHTML = "Only 15 character is Allowed"
+    } else if (e.target.value.length == 0) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para2.innerHTML = "Please Enter a Unique User name"
+    } else if (e.target.value.length > 7 && !/\d/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para2.innerHTML = "Must Include Number"
+    } else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para2.innerHTML = "Symbols is Not Allowed"
+    } else {
+        // console.log(e.target.previousElementSibling);
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
+        // enable error text for blur
+    }
+}
+
 // other characters without numbers is not allowed
 function phoneeeNumberrr(e) {
+    e.target.value.spellcheck = false;
     // checking with asci code (:
-    if (e.target.value == 0) {
+    if (e.target.value.length == 0) {
         // enable error text for blur
         // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para3.innerHTML = "Please Enter a valid Number"
         // console.log(e.target.previousElementSibling);
-    } else if (e.which < 48 || e.which > 57) {
+    } else if (e.which == 8) {
+        // console.log("it  is back space button keying up ");
+        if (e.target.value.length <= 11) {
+            // console.log("less than 11 char");
+            e.target.previousElementSibling.style.opacity = "0"
+            e.target.style.borderColor = "green"
+            para3.innerHTML = "Complete Your Number"
+        }
+    } else if (e.which < 47 || e.which > 57) {
         // console.log(e.target);
-        para3.innerHTML = "Invalid Number"
+        para3.innerHTML = "Only Numbers are Allowed"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         // costume text for error
-        console.log(para3);
+        // console.log(para3);
     } else if (e.target.value.length > 11) {
+        // console.log("more than 10 char");
         // console.log(e.target);
+        // costume text for error
         para3.innerHTML = "Invalid Number"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
-        // costume text for error
-        console.log(para3);
+    } else if (e.target.value.includes("0")) {
+        // console.log("0 including");
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
     } else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
     }
 }
 
-function signUpGoogle(e) {
-    e.preventDefault()
-}
-
-function send() {
-    console.log("it is sending data from json");
-}
-
-function phoneeeNumberrr(e) {
-    console.log(e.target);
-}
-
 function emailValid(e) {
-    console.log(e.target);
+    // checking with target type
+    e.target.value.spellcheck = false;
+    // console.log(e.target);
+    if (e.target.value.length == 0) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para4.innerHTML = "Please Enter Your Email "
+    } else if (e.target.value.length && !e.target.value.includes("@")) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para4.innerHTML = "Must Include ( @ ) "
+    } else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para4.innerHTML = "Symbols is Not Allowed"
+    } else {
+        // console.log(e.target.previousElementSibling);
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
+        // enable error text for blur
+    }
 }
 
 function passwordValid(e) {
@@ -179,4 +246,12 @@ function passwordValid(e) {
 
 function repasswordValid(e) {
     console.log(e.target);
+}
+
+function signUpGoogle(e) {
+    e.preventDefault()
+}
+
+function send() {
+    console.log("it is sending data from json");
 }

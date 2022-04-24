@@ -242,10 +242,59 @@ function emailValid(e) {
 
 function passwordValid(e) {
     console.log(e.target);
+    // checking with target type
+    e.target.value.spellcheck = false;
+    // console.log(e.target);
+    if (e.target.value.length == 0) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para5.innerHTML = "Please Set a Strong Password "
+    }
+    // else if (){
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    //     console.log("it must include letters");
+    // }
+    else if (e.target.value.length < 8){
+                // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para5.innerHTML = "* At Least 8 Character * "
+    } 
+    else if ( !/\d/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        // e.preventDefault()
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para5.innerHTML = "Must Include Number"
+    } 
+    else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para5.innerHTML = "Must Include Symbols"
+    } else {
+        // console.log(e.target.previousElementSibling);
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
+        // enable error text for blur
+    }
 }
 
 function repasswordValid(e) {
     console.log(e.target);
+    const firstPas = 
 }
 
 function signUpGoogle(e) {

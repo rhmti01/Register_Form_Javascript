@@ -145,6 +145,7 @@
     /* background-color:brown; */
     height: 30px;
     width: 97%;
+    margin-top: 13px;
 }
 
 .section-two .part .three .one {
@@ -260,6 +261,7 @@
     font-size: 14px;
     font-weight: 400;
     color: #111;
+    margin-top: 10px;
 }
 
 #log-in a {

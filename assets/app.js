@@ -18,12 +18,10 @@ const para6 = para[5]
 const checkbox1 = document.getElementById("remmber-me")
 const checkbox2 = document.getElementById("terms-privacy")
 const agreeText = checkbox2.nextElementSibling;
-const txt = " ( reqired )"
-txt.classList = "txt" ;
 
 // eventListeners=>
 eventListeners()
-
+// Main Events Function
 function eventListeners() {
     // disabling create account button for # and /
     document.addEventListener("keypress", enterPress)
@@ -31,49 +29,39 @@ function eventListeners() {
     createAccount.addEventListener("click", send)
     // disabling create account button for # and /
     signWithGoogle.addEventListener("click", signUpGoogle)
-    // key up to validation
+    // Function Validations for key up on Keyboard
     full_name.addEventListener("keyup", validation)
-    // key up to validation
     user_name.addEventListener("keyup", validation)
-    // key up to validation
     email.addEventListener("keyup", validation)
-    // key up to validation
     phone_number.addEventListener("keyup", validation)
-    // key up to validation
     password.addEventListener("keyup", validation)
-    // key up to validation
     re_password.addEventListener("keyup", validation)
     // other type of event for validation
-    // focus to validation
     full_name.addEventListener("focus", validation)
-    // focus to validation
     user_name.addEventListener("focus", validation)
-    // focus to validation
     email.addEventListener("focus", validation)
-    // focus to validation
     phone_number.addEventListener("focus", validation)
-    // focus to validation
     password.addEventListener("focus", validation)
-    // focus to validation
     re_password.addEventListener("focus", validation)
-    // click to validation 
+    // click to validation
     checkbox2.addEventListener("click", checkboxValid)
 }
 
-// Function
+// Function==>
 
 // if user keypress in input and then INTER so run validation function
 function enterPress(e) {
+    // checking with e.keyCode (ASCI CODES)
     if (e.keyCode == 13) {
+        // last step of validation to show Create Account Gif
         send()
     };
 }
 
 // validating input for better sign up
 function validation(e) {
-    // for full name input
+    // Unique Functions for Eac
     if (this.id == 'full-name') {
-        // full validation for full name
         fulllNameee(e)
     }
     if (this.id == "user-name") {
@@ -91,43 +79,37 @@ function validation(e) {
     if (this.id == "re-password") {
         repasswordValid(e)
     }
+    // checking checkbox validation to call an error 
     checkboxValid(e)
 }
 
-// console.log(par1.innerHtml);
-// it should not contain any number
+// Full Name Validation Function 
 function fulllNameee(e) {
-    // value validation of full name
+    // console.log(e.target);
+    // checking spell for input value
     e.target.value.spellcheck = false
-
+    // Value Length Testing 
     if (e.target.value.length > 20) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Only 20 letter is Allowed"
-    } else if (/\d/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
+    } // Number includes Testing
+    else if (/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Number is Not Allowed in FullName"
-    } else if (e.target.value == 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
+    } // value Must Not be Empty
+    else if (e.target.value == 0) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Please Enter your Full Name"
-    } else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+    } // Symbols Must Not Includes
+    else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Symbols is Not Allowed"
-    } else {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
+    } // For No Error Situations 
+    else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
     }
@@ -135,161 +117,139 @@ function fulllNameee(e) {
 
 // checking user name input for validation 
 function userrrNameee(e) {
-    // checking with target type
     // console.log(e.target);
+    // checking spell for input value
+    e.target.value.spellcheck = false
+    // Value Length Testing 
     if (e.target.value.length > 15) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Only 15 character is Allowed"
-    } else if (e.target.value.length == 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
+    } // value Must Not be Empty 
+    else if (e.target.value.length == 0) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Please Enter a Unique User name"
-    } else if (e.target.value.length > 7 && !/\d/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
+    } // Number Includes Testing
+    else if (e.target.value.length > 7 && !/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Must Include Number"
-    } else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
+    } // Symbols Must Not Includes 
+    else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Symbols is Not Allowed"
-    } else {
-        // console.log(e.target.previousElementSibling);
+    } // For No Error Situations  
+    else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
-        // enable error text for blur
     }
 }
 
-// other characters without numbers is not allowed
+// Checking Phone Number Value Input Function
 function phoneeeNumberrr(e) {
-    e.target.value.spellcheck = false;
-    // checking with asci code (:
+    // console.log(e.target);
+    // checking spell for input value
+    e.target.value.spellcheck = false
+    // value Must Not be Empty 
     if (e.target.value.length == 0) {
-        // enable error text for blur
-        // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para3.innerHTML = "Please Enter a valid Number"
-        // console.log(e.target.previousElementSibling);
-    } else if (e.which == 8) {
-        // console.log("it  is back space button keying up ");
+    } // Back up On Back Space
+    else if (e.which == 8) {
+        // it is back space button keying up
         if (e.target.value.length <= 11) {
-            // console.log("less than 11 char");
             e.target.previousElementSibling.style.opacity = "0"
             e.target.style.borderColor = "green"
             para3.innerHTML = "Complete Your Number"
         }
-    } else if (e.which < 47 || e.which > 57) {
-        // console.log(e.target);
+    } // This Function is Allowed to Number Keys 
+    else if (e.which < 47 || e.which > 57) {
         para3.innerHTML = "Only Numbers are Allowed"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
-        // costume text for error
-        // console.log(para3);
-    } else if (e.target.value.length > 11) {
-        // console.log("more than 10 char");
-        // console.log(e.target);
-        // costume text for error
+    } // Value Length Testing 
+    else if (e.target.value.length > 11) {
         para3.innerHTML = "Invalid Number"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
-    } else if (e.target.value.includes("0")) {
-        // console.log("0 including");
+    } // Value must Includes 0 
+    else if (e.target.value.includes("0")) {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
-    } else {
+    } // No Error Of Function Situation  
+    else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
     }
 }
 
+// checking Email input for validation 
 function emailValid(e) {
-    // checking with target type
-    e.target.value.spellcheck = false;
-    // console.log(e.target);
+    // checking spell for input value
+    e.target.value.spellcheck = false
+    // value Must Not be Empty 
     if (e.target.value.length == 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Please Enter Your Email "
-    } else if (e.target.value.length && !e.target.value.includes("@")) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
+    } // must Includes @ in Value
+    else if (e.target.value.length && !e.target.value.includes("@")) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Must Include ( @ ) "
-    } else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,\/]/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
+    } // Symbols Is not used in Email Values 
+    else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Symbols is Not Allowed"
-    } else {
-        // console.log(e.target.previousElementSibling);
+    } // No Error Of Function Situation 
+    else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
-        // enable error text for blur
     }
 }
 
+// Checking Password Validation Function
 function passwordValid(e) {
     // console.log(e.target);
-    // checking with target type
-    e.target.value.spellcheck = false;
-    // console.log(e.target);
+    // checking spell for input value
+    e.target.value.spellcheck = false
+    // value Must Not Be Empty
     if (e.target.value.length == 0) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Please Set a Strong Password "
-    } else if (e.target.value.length < 8) {
-        // enable error text for blur
-        // e.preventDefault()
+    } // Validation Of Value Length
+    else if (e.target.value.length < 8) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "* At Least 8 Character * "
-    } else if (!/\d/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
-        // e.preventDefault()
+    } // Number For Password Strong Quality
+    else if (!/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Must Include Number"
-    } else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
-        // console.log(e.target.previousElementSibling);
-        // enable error text for blur
+    } // Symbols For Password Strong Quality 
+    else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Must Include Symbols"
-    } else {
-        // console.log(e.target.previousElementSibling);
+    } // No Error Of Function Situations
+    else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
-        // enable error text for blur
     }
     // return password;
-    // return e.target.value;
 }
 
+// Re-Password Function Checking Of Values
 function repasswordValid(e) {
-    // console.log("re_is_working");
-    // console.log(password.value);
+    // console.log(e.target);
+    // checking spell for input value
+    e.target.value.spellcheck = false
     if (password.value !== e.target.value) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
@@ -310,27 +270,23 @@ function repasswordValid(e) {
     }
 }
 
+// Terms and Privacy Validation
 function checkboxValid(e) {
     // console.log(e.target);
     if (e.target.checked == true) {
         console.log(true);
-       agreeText.style.color = "#111" 
-       agreeText.innerHTML = "I agree to all the Terms and Privacy policy"
 
     } else {
-        console.log(agreeText);
-        agreeText.innerHTML = "I agree to all the Terms and Privacy policy ( required )"
-       agreeText.style.color = "#ff0000" 
-       console.log(txt);
-        
+        console.log(false);
     }
 }
 
-
+// disabling # after On Clicking 
 function signUpGoogle(e) {
     e.preventDefault()
 }
 
+// Last Step of Creating Account
 function send() {
     console.log("it is sending data from json");
 }

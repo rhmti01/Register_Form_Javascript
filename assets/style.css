@@ -4,7 +4,7 @@
     box-sizing: border-box;
     outline: 0;
     border: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Vazirmatn' , sans-serif;
 }
 
 .container {
@@ -58,7 +58,7 @@
     cursor: pointer;
 }
 
-.section-one img:hover{
+.section-one img:hover {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -113,6 +113,7 @@
 }
 
 .section-two .part .form .in input {
+    /* direction: rtl; */
     border: 1.4px solid #c5c5c5;
     box-sizing: border-box;
     border-radius: 3px;
@@ -165,7 +166,7 @@
     color: #007AFF;
 }
 
-.section-two .part .three .one p:nth-child(1):hover{
+.section-two .part .three .one p:nth-child(1):hover {
     text-decoration: underline;
 }
 
@@ -233,7 +234,7 @@
 }
 
 #CA:hover {
-    box-shadow: 0 0 6px   #007AFF, 0 0 10px #007AFF , 0 0 20px #007AFF;
+    box-shadow: 0 0 6px #007AFF, 0 0 10px #007AFF, 0 0 20px #007AFF;
 }
 
 #SI {
@@ -246,14 +247,14 @@
 }
 
 #SI:hover {
-    box-shadow: 0 0 6px   rgba(45, 55, 72, 1), 0 0 10px rgba(45, 55, 72, 1) , 0 0 20px rgba(45, 55, 72, 1);
+    box-shadow: 0 0 6px rgba(45, 55, 72, 1), 0 0 10px rgba(45, 55, 72, 1), 0 0 20px rgba(45, 55, 72, 1);
 }
 
 #SI img {
-    margin-right:  8px;
+    margin-right: 8px;
 }
 
-#log-in{
+#log-in {
     text-align: center;
     font-size: 14px;
     font-weight: 400;
@@ -265,22 +266,18 @@
     color: #007AFF;
 }
 
-#log-in a:hover{
+#log-in a:hover {
     text-decoration: underline;
 }
 
-#button{
+#button {
     cursor: pointer;
     width: 230px;
     text-align: left;
     margin-top: 50px;
 }
 
-.img-box{
+.img-box {
     display: flex;
     justify-content: center;
 }
-
-
-
-

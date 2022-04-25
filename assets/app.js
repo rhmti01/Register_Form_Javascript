@@ -226,7 +226,7 @@ function emailValid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Must Include ( @ ) "
-    } else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+    } else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,\/]/.test(e.target.value)) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         e.target.previousElementSibling.style.opacity = "1"
@@ -241,7 +241,7 @@ function emailValid(e) {
 }
 
 function passwordValid(e) {
-    console.log(e.target);
+    // console.log(e.target);
     // checking with target type
     e.target.value.spellcheck = false;
     // console.log(e.target);
@@ -252,33 +252,20 @@ function passwordValid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Please Set a Strong Password "
-    }
-    // else if (){
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    //     console.log("it must include letters");
-    // }
-    else if (e.target.value.length < 8){
-                // enable error text for blur
+    } else if (e.target.value.length < 8) {
+        // enable error text for blur
         // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "* At Least 8 Character * "
-    } 
-    else if ( !/\d/.test(e.target.value)) {
+    } else if (!/\d/.test(e.target.value)) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         // e.preventDefault()
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Must Include Number"
-    } 
-    else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
+    } else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         e.target.previousElementSibling.style.opacity = "1"
@@ -290,11 +277,31 @@ function passwordValid(e) {
         e.target.style.borderColor = "green"
         // enable error text for blur
     }
+    // return password;
+    // return e.target.value;
 }
 
 function repasswordValid(e) {
-    console.log(e.target);
-    const firstPas = 
+    // console.log("re_is_working");
+    // console.log(password.value);
+    if (password.value !== e.target.value) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para6.innerHTML = "Passwords Are not Same"
+    } else if (e.target.value.length == 0) {
+        // console.log(e.target.previousElementSibling);
+        // enable error text for blur
+        e.target.previousElementSibling.style.opacity = "1"
+        e.target.style.borderColor = "red"
+        para5.innerHTML = "Please Confirm Your Password"
+    } else {
+        // console.log(e.target.previousElementSibling);
+        e.target.previousElementSibling.style.opacity = "0"
+        e.target.style.borderColor = "green"
+        // enable error text for blur
+    }
 }
 
 function signUpGoogle(e) {

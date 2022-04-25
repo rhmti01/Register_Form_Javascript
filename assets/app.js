@@ -15,6 +15,11 @@ const para3 = para[2]
 const para4 = para[3]
 const para5 = para[4]
 const para6 = para[5]
+const checkbox1 = document.getElementById("remmber-me")
+const checkbox2 = document.getElementById("terms-privacy")
+const agreeText = checkbox2.nextElementSibling;
+const txt = " ( reqired )"
+txt.classList = "txt" ;
 
 // eventListeners=>
 eventListeners()
@@ -26,32 +31,33 @@ function eventListeners() {
     createAccount.addEventListener("click", send)
     // disabling create account button for # and /
     signWithGoogle.addEventListener("click", signUpGoogle)
-
-    // key down to validation
+    // key up to validation
     full_name.addEventListener("keyup", validation)
-    // key down to validation
+    // key up to validation
     user_name.addEventListener("keyup", validation)
-    // key down to validation
+    // key up to validation
     email.addEventListener("keyup", validation)
-    // key down to validation
+    // key up to validation
     phone_number.addEventListener("keyup", validation)
-    // key down to validation
+    // key up to validation
     password.addEventListener("keyup", validation)
-    // key down to validation
+    // key up to validation
     re_password.addEventListener("keyup", validation)
-
-    // key down to validation
+    // other type of event for validation
+    // focus to validation
     full_name.addEventListener("focus", validation)
-    // key down to validation
+    // focus to validation
     user_name.addEventListener("focus", validation)
-    // key down to validation
+    // focus to validation
     email.addEventListener("focus", validation)
-    // key down to validation
+    // focus to validation
     phone_number.addEventListener("focus", validation)
-    // key down to validation
+    // focus to validation
     password.addEventListener("focus", validation)
-    // key down to validation
+    // focus to validation
     re_password.addEventListener("focus", validation)
+    // click to validation 
+    checkbox2.addEventListener("click", checkboxValid)
 }
 
 // Function
@@ -65,7 +71,6 @@ function enterPress(e) {
 
 // validating input for better sign up
 function validation(e) {
-    e.target.value.spellcheck = false
     // for full name input
     if (this.id == 'full-name') {
         // full validation for full name
@@ -86,6 +91,7 @@ function validation(e) {
     if (this.id == "re-password") {
         repasswordValid(e)
     }
+    checkboxValid(e)
 }
 
 // console.log(par1.innerHtml);
@@ -303,6 +309,23 @@ function repasswordValid(e) {
         // enable error text for blur
     }
 }
+
+function checkboxValid(e) {
+    // console.log(e.target);
+    if (e.target.checked == true) {
+        console.log(true);
+       agreeText.style.color = "#111" 
+       agreeText.innerHTML = "I agree to all the Terms and Privacy policy"
+
+    } else {
+        console.log(agreeText);
+        agreeText.innerHTML = "I agree to all the Terms and Privacy policy ( required )"
+       agreeText.style.color = "#ff0000" 
+       console.log(txt);
+        
+    }
+}
+
 
 function signUpGoogle(e) {
     e.preventDefault()

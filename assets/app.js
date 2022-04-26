@@ -23,8 +23,6 @@ const agreeText = checkbox2.nextElementSibling;
 eventListeners()
 // Main Events Function
 function eventListeners() {
-    // disabling create account button for # and /
-    document.addEventListener("keypress", enterPress)
     // validating form function to run this
     createAccount.addEventListener("click", send)
     // disabling create account button for # and /
@@ -43,20 +41,9 @@ function eventListeners() {
     phone_number.addEventListener("focus", validation)
     password.addEventListener("focus", validation)
     re_password.addEventListener("focus", validation)
-    // click to validation
-    checkbox2.addEventListener("click", checkboxValid)
 }
 
 // Function==>
-
-// if user keypress in input and then INTER so run validation function
-function enterPress(e) {
-    // checking with e.keyCode (ASCI CODES)
-    if (e.keyCode == 13) {
-        // last step of validation to show Create Account Gif
-        send()
-    };
-}
 
 // validating input for better sign up
 function validation(e) {
@@ -79,12 +66,12 @@ function validation(e) {
     if (this.id == "re-password") {
         repasswordValid(e)
     }
-    // checking checkbox validation to call an error 
-    checkboxValid(e)
+
 }
 
 // Full Name Validation Function 
 function fulllNameee(e) {
+    const field = e.target;
     // console.log(e.target);
     // checking spell for input value
     e.target.value.spellcheck = false
@@ -93,30 +80,36 @@ function fulllNameee(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Only 20 letter is Allowed"
+        field.classList.add("error");
     } // Number includes Testing
     else if (/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Number is Not Allowed in FullName"
+        field.classList.add("error");
     } // value Must Not be Empty
     else if (e.target.value == 0) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Please Enter your Full Name"
+        field.classList.add("error");
     } // Symbols Must Not Includes
     else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para1.innerHTML = "Symbols is Not Allowed"
+        field.classList.add("error");
     } // For No Error Situations 
     else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.remove("error");
     }
 }
 
 // checking user name input for validation 
 function userrrNameee(e) {
+    const field = e.target;
     // console.log(e.target);
     // checking spell for input value
     e.target.value.spellcheck = false
@@ -125,30 +118,36 @@ function userrrNameee(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Only 15 character is Allowed"
+        field.classList.add("error");
     } // value Must Not be Empty 
     else if (e.target.value.length == 0) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Please Enter a Unique User name"
+        field.classList.add("error");
     } // Number Includes Testing
     else if (e.target.value.length > 7 && !/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Must Include Number"
+        field.classList.add("error");
     } // Symbols Must Not Includes 
     else if (/[-!$%#@^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para2.innerHTML = "Symbols is Not Allowed"
+        field.classList.add("error");
     } // For No Error Situations  
     else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.remove("error");
     }
 }
 
 // Checking Phone Number Value Input Function
 function phoneeeNumberrr(e) {
+    const field = e.target;
     // console.log(e.target);
     // checking spell for input value
     e.target.value.spellcheck = false
@@ -157,37 +156,35 @@ function phoneeeNumberrr(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para3.innerHTML = "Please Enter a valid Number"
-    } // Back up On Back Space
-    else if (e.which == 8) {
-        // it is back space button keying up
-        if (e.target.value.length <= 11) {
-            e.target.previousElementSibling.style.opacity = "0"
-            e.target.style.borderColor = "green"
-            para3.innerHTML = "Complete Your Number"
-        }
+        field.classList.add("error");
     } // This Function is Allowed to Number Keys 
     else if (e.which < 47 || e.which > 57) {
         para3.innerHTML = "Only Numbers are Allowed"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
+        field.classList.add("error");
     } // Value Length Testing 
     else if (e.target.value.length > 11) {
         para3.innerHTML = "Invalid Number"
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
+        field.classList.add("error");
     } // Value must Includes 0 
     else if (e.target.value.includes("0")) {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.add("error");
     } // No Error Of Function Situation  
     else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.remove("error");
     }
 }
 
 // checking Email input for validation 
 function emailValid(e) {
+    const field = e.target;
     // checking spell for input value
     e.target.value.spellcheck = false
     // value Must Not be Empty 
@@ -195,25 +192,30 @@ function emailValid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Please Enter Your Email "
+        field.classList.add("error");
     } // must Includes @ in Value
     else if (e.target.value.length && !e.target.value.includes("@")) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Must Include ( @ ) "
+        field.classList.add("error");
     } // Symbols Is not used in Email Values 
     else if (/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para4.innerHTML = "Symbols is Not Allowed"
+        field.classList.add("error");
     } // No Error Of Function Situation 
     else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.remove("error");
     }
 }
 
 // Checking Password Validation Function
 function passwordValid(e) {
+    const field = e.target;
     // console.log(e.target);
     // checking spell for input value
     e.target.value.spellcheck = false
@@ -222,31 +224,37 @@ function passwordValid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Please Set a Strong Password "
+        field.classList.add("error");
     } // Validation Of Value Length
     else if (e.target.value.length < 8) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "* At Least 8 Character * "
+        field.classList.add("error");
     } // Number For Password Strong Quality
     else if (!/\d/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Must Include Number"
+        field.classList.add("error");
     } // Symbols For Password Strong Quality 
     else if (!/[-!$%#^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(e.target.value)) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Must Include Symbols"
+        field.classList.add("error");
     } // No Error Of Function Situations
     else {
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
+        field.classList.remove("error");
     }
     // return password;
 }
 
 // Re-Password Function Checking Of Values
 function repasswordValid(e) {
+    const field = e.target;
     // console.log(e.target);
     // checking spell for input value
     e.target.value.spellcheck = false
@@ -256,30 +264,23 @@ function repasswordValid(e) {
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para6.innerHTML = "Passwords Are not Same"
+        field.classList.add("error");
     } else if (e.target.value.length == 0) {
         // console.log(e.target.previousElementSibling);
         // enable error text for blur
         e.target.previousElementSibling.style.opacity = "1"
         e.target.style.borderColor = "red"
         para5.innerHTML = "Please Confirm Your Password"
+        field.classList.add("error");
     } else {
         // console.log(e.target.previousElementSibling);
         e.target.previousElementSibling.style.opacity = "0"
         e.target.style.borderColor = "green"
         // enable error text for blur
+        field.classList.remove("error");
     }
 }
 
-// Terms and Privacy Validation
-function checkboxValid(e) {
-    // console.log(e.target);
-    if (e.target.checked == true) {
-        console.log(true);
-
-    } else {
-        console.log(false);
-    }
-}
 
 // disabling # after On Clicking 
 function signUpGoogle(e) {
@@ -288,5 +289,28 @@ function signUpGoogle(e) {
 
 // Last Step of Creating Account
 function send() {
+
+    let error = document.querySelectorAll(".error");
+    if (full_name.value !== "" && user_name.value !== "" && email.value !== "" && phone_number.value !== "" && password.value !== "" && re_password.value !== "") {
+        if (error.length === 0) {
+            console.log(error.length);
+            console.log(":)))))))))))))))))");
+        }
+    } else if (full_name.value == "" && user_name.value == "" && email.value == "" && phone_number.value == "" && password.value == "" && re_password.value == "") {
+        alert("you Must Fill The Form To Create Account")
+    } else {
+        
+    }
+
+
     console.log("it is sending data from json");
 }
+
+
+
+// full_name
+// user_name
+// email
+// phone_number
+// password
+// re_password

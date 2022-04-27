@@ -249,7 +249,6 @@ function passwordValid(e) {
         e.target.style.borderColor = "green"
         field.classList.remove("error");
     }
-    // return password;
 }
 
 // Re-Password Function Checking Of Values
@@ -281,7 +280,6 @@ function repasswordValid(e) {
     }
 }
 
-
 // disabling # after On Clicking 
 function signUpGoogle(e) {
     e.preventDefault()
@@ -289,28 +287,43 @@ function signUpGoogle(e) {
 
 // Last Step of Creating Account
 function send() {
-
     let error = document.querySelectorAll(".error");
     if (full_name.value !== "" && user_name.value !== "" && email.value !== "" && phone_number.value !== "" && password.value !== "" && re_password.value !== "") {
         if (error.length === 0) {
             console.log(error.length);
             console.log(":)))))))))))))))))");
+            Swal.fire({
+                title: '',
+                text: 'Account Created',
+                imageUrl: 'https://i.pinimg.com/originals/90/13/f7/9013f7b5eb6db0f41f4fd51d989491e7.gif',
+                imageWidth: 400,
+                imageHeight: 300,
+                imageAlt: 'Custom image',
+              })
+           
         }
     } else if (full_name.value == "" && user_name.value == "" && email.value == "" && phone_number.value == "" && password.value == "" && re_password.value == "") {
-        alert("you Must Fill The Form To Create Account")
-    } else {
+        // alert("you Must Fill The Form To Create Account")
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          }) 
+          
+          Toast.fire({
+            icon: 'error',
+            title: 'Fill The Form Completely'
+          })
+    }
+    if (error.length > 0) {
+        console.log(error.length);
         
     }
-
-
     console.log("it is sending data from json");
 }
-
-
-
-// full_name
-// user_name
-// email
-// phone_number
-// password
-// re_password
